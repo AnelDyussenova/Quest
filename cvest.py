@@ -67,74 +67,79 @@ class Evil:
         pr_xp=pr_xp-25
         return pr_xp
 
-
-person = Person()
-golem = Evil()
-popal=FALSE
-poteryl=FALSE
-poteryl_luk=FALSE
-print("Your task is to kill the golem.\nGolem's life:  100\nYour life: 100")
-print('Bow damage: 10; probability of hitting: 86%\nSword damage: 25; probability of hitting: 75%\nMelee strike damage: 10; probability of hitting: 67%')
-while(person.xp>0 and golem.xp>0):
-    print('Attack')
-    if poteryl_luk== TRUE:
-        print("You run out of arrows\nPress 2 to use sword\nPress 3 to melee strike")
-    if poteryl==TRUE:
-        print("Press 1 to use bow\nYou lost your sword\nPress 3 to melee strike")
-    if poteryl== FALSE and poteryl_luk==FALSE:
-        print("Press 1 to use bow\nPress 2 to use sword\nPress 3 to melee strike")
-    otv = input()
-    if otv == '1':
-        if poteryl_luk!=TRUE:
-            golem.xp, popal, poteryl_luk= person.ataka_luk(golem.xp, popal)
-            if popal==FALSE:
-                person.xp= golem.ataka(person.xp)
-            if poteryl_luk==TRUE:
-                print('You run out of arrows')
-        else:
-            print("You run out of arrows")
-            person.xp= golem.ataka(person.xp)
-        if popal==TRUE:
-            print("You hit. Golem's life: ",golem.xp)
-        elif popal==FALSE:
-            print("Your blow failed. You are attacked by a golem. Your life: ",person.xp)
-    elif otv == '2':
-        if poteryl!=TRUE:
-            golem.xp, popal, poteryl= person.ataka_mech(golem.xp, popal)
-            if popal==FALSE:
-                person.xp= golem.ataka(person.xp)
-            if poteryl==TRUE:
-                print('You lost your sword')
-        else:
-            person.xp= golem.ataka(person.xp)
-        if popal==TRUE:
-            print("You hit. Golem's life: ",golem.xp)
-        elif popal==FALSE:
-            print("Your blow failed. You are attacked by a golem. Your life: ",person.xp)
-    elif otv == '3':
-        golem.xp, popal= person.ataka(golem.xp, popal)
-        if popal==FALSE:
-            person.xp= golem.ataka(person.xp)
-        if popal==TRUE:
-            print("You hit. Golem's life: ",golem.xp)
-        elif popal==FALSE:
-            print("Your blow failed. You are attacked by a golem. Your life: ",person.xp)
-    elif otv == '4':
-        person.zashita(popal)
-        print("Protection. Your life: ",person.xp,"Golem's life: ",golem.xp)
+def mmain():
+    person = Person()
+    golem = Evil()
     popal=FALSE
-        
-if(person.xp>golem.xp):
-    print('Congratulations, you won!!!!')
-elif(person.xp<golem.xp):
-    print('Game over')
-else:
-    print('Hmm... both of you died')
+    poteryl=FALSE
+    poteryl_luk=FALSE
+    print("Your task is to kill the golem.\nGolem's life:  100\nYour life: 100")
+    print('Bow damage: 10; probability of hitting: 86%\nSword damage: 25; probability of hitting: 75%\nMelee strike damage: 10; probability of hitting: 67%')
+    while(person.xp>0 and golem.xp>0):
+        print('Attack')
+        if poteryl_luk== TRUE:
+            print("You run out of arrows\nPress 2 to use sword\nPress 3 to melee strike")
+        if poteryl==TRUE:
+            print("Press 1 to use bow\nYou lost your sword\nPress 3 to melee strike")
+        if poteryl== FALSE and poteryl_luk==FALSE:
+            print("Press 1 to use bow\nPress 2 to use sword\nPress 3 to melee strike")
+        otv = input()
+        if otv == '1':
+            if poteryl_luk!=TRUE:
+                golem.xp, popal, poteryl_luk= person.ataka_luk(golem.xp, popal)
+                if popal==FALSE:
+                    person.xp= golem.ataka(person.xp)
+                if poteryl_luk==TRUE:
+                    print('You run out of arrows')
+            else:
+                print("You run out of arrows")
+                person.xp= golem.ataka(person.xp)
+            if popal==TRUE:
+                print("You hit. Golem's life: ",golem.xp)
+            elif popal==FALSE:
+                print("Your blow failed. You are attacked by a golem. Your life: ",person.xp)
+        elif otv == '2':
+            if poteryl!=TRUE:
+                golem.xp, popal, poteryl= person.ataka_mech(golem.xp, popal)
+                if popal==FALSE:
+                    person.xp= golem.ataka(person.xp)
+                if poteryl==TRUE:
+                    print('You lost your sword')
+            else:
+                person.xp= golem.ataka(person.xp)
+            if popal==TRUE:
+                print("You hit. Golem's life: ",golem.xp)
+            elif popal==FALSE:
+                print("Your blow failed. You are attacked by a golem. Your life: ",person.xp)
+        elif otv == '3':
+            golem.xp, popal= person.ataka(golem.xp, popal)
+            if popal==FALSE:
+                person.xp= golem.ataka(person.xp)
+            if popal==TRUE:
+                print("You hit. Golem's life: ",golem.xp)
+            elif popal==FALSE:
+                print("Your blow failed. You are attacked by a golem. Your life: ",person.xp)
+        elif otv == '4':
+            person.zashita(popal)
+            print("Protection. Your life: ",person.xp,"Golem's life: ",golem.xp)
+        popal=FALSE
+            
+    if(person.xp>golem.xp):
+        print('Congratulations, you won!!!!')
+    elif(person.xp<golem.xp):
+        print('Game over')
+    else:
+        print('Hmm... both of you died')
+    again()
+def again():
+    print("Do you want to play again?")
+    otv = input()
+    if otv.lower()=='yes':
+        mmain()
+    elif otv.lower()=='no': 
+        print("Okey, bye))")
 
-
-
-
-
+mmain()
 
         
     
